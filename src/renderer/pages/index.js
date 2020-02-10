@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import {Button, Icon} from "antd";
-import { connect } from 'dva';
 
-@connect(({ global }) => ({ global }))
 class Index extends PureComponent{
   state = {
     size: 'large'
@@ -10,8 +8,7 @@ class Index extends PureComponent{
   render() {
       const {size} = this.state;
     return (
-      <div>
-        <p>{this.props.global.msg}</p>
+      <div style={{height: '1000px'}}>
         <Button type="primary">Primary</Button>
         <Button.Group size={size}>
           <Button type="primary">

@@ -1,28 +1,20 @@
 import routes from "./router.config";
+import plugins from "./plugin.config";
+import themes from './theme.config';
 const buildrc = require("../../../.buildrc.js");
 
+plugins.push(['umi-plugin-antd-theme',themes])
+
 export default {
-  history: 'hash',
+  hash: true,
   outputPath: `../../dist/renderer`,
   publicPath: './',
-  plugins: [
-    [
-      'umi-plugin-react',
-      {
-        antd: true,
-        dva: true,
-        dynamicImport: true,
-        title: 'Hello World',
-        dll: true,
-        hardSource: false,
-        routes: {
-          exclude: [/components/],
-        },
-      },
-    ],
-  ],
   alias: buildrc.webpack.alias,
   treeShaking: true,
   ignoreMomentLocale: true,
+  lessLoaderOptions: {
+    javascriptEnabled: true,
+  },
+  plugins,
   routes,
 };
