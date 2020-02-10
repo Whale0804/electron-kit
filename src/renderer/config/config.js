@@ -1,3 +1,4 @@
+import routes from "./router.config";
 const buildrc = require("../../../.buildrc.js");
 
 export default {
@@ -23,10 +24,5 @@ export default {
   alias: buildrc.webpack.alias,
   treeShaking: true,
   ignoreMomentLocale: true,
-  routes: [
-    {
-      path: '/',
-      component: './index',
-    },
-  ],
+  routes,
 };
