@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/umi-electron.iml" filepath="$PROJECT_DIR$/.idea/umi-electron.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/electron-kit.iml" filepath="$PROJECT_DIR$/.idea/electron-kit.iml" />
     </modules>
   </component>
 </project>

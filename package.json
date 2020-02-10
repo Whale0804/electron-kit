@@ -1,57 +1,86 @@
 {
-  "name": "umi-electron",
+  "name": "electron-kit",
   "version": "1.0.0",
-  "description": "an example based on umijs + electron",
+  "description": "electron kit",
+  "author": {
+    "name": "Githinkcn",
+    "email": "549595297@qq.com",
+    "url": "https://github.com/githinkcn"
+  },
   "main": "./dist/main/main.js",
   "private": true,
   "build": {
-    "productName": "electron",
+    "productName": "electron-kit",
+    "appId": "com.whale4cloud.electron.kit",
+    "asar": false,
+    "directories": {
+      "output": "release"
+    },
     "files": [
       "dist/",
       "node_modules/",
       "package.json"
     ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
     "mac": {
-      "category": "your.app.category.type"
+      "category": "com.whale4cloud.electron.kit",
+      "icon": "build/icon.icns"
     },
     "win": {
+      "icon": "build/icon.ico",
       "target": [
         "nsis"
+      ]
+    },
+    "linux": {
+      "category": "Music",
+      "icon": "build/icons",
+      "target": [
+        "deb",
+        "AppImage"
       ]
     },
     "nsis": {
       "oneClick": false,
       "perMachine": true,
       "allowToChangeInstallationDirectory": true
-    },
-    "directories": {
-      "output": "release"
-    },
-    "appId": "com.cn.littlestrong.demo",
-    "asar": false
+    }
   },
   "scripts": {
     "start": "concurrently \"cross-env BROWSER=none yarn start:renderer\" \"wait-on http://localhost:8000 && electron-webpack dev\"",
     "start:main": "electron-webpack dev",
     "start:renderer": "cross-env APP_ROOT=src/renderer umi dev",
+    "build": "npm run build:renderer && npm run build-main-prod",
     "build-main-prod": "NODE_ENV=production webpack --config ./build/webpack.main.prod.config.js",
     "build-main-dev": "NODE_ENV=development webpack --config ./build/webpack.main.config.js",
     "build:renderer": "cross-env APP_ROOT=src/renderer umi build",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "debug:main": "run-electron --inspect=5858 -w ./dist/main/main.js",
-    "pack": "npm run build:renderer && npm run build-main-prod && electron-builder --dir",
-    "exe": "electron-builder --win",
+    "pack": "yarn run build && electron-builder --dir",
+    "package:win": "yarn run build && rm -rf release && electron-builder build --win --x64",
+    "package:linux": "yarn run build && rm -rf release && electron-builder build --linux",
+    "package:mac": "yarn run build && rm -rf release && electron-builder build --mac",
     "dist": "electron-builder",
     "prettier": "prettier --list-different \"./**/*.{ts,tsx,js,jsx,less}\""
   },
   "keywords": [
     "Electron",
-    "umi",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "umi"
   ],
   "devDependencies": {
     "axios": "^0.19.2",
