@@ -1,0 +1,96 @@
+{
+  "name": "umi-electron",
+  "version": "1.0.0",
+  "description": "an example based on umijs + electron",
+  "main": "./dist/main/main.js",
+  "private": true,
+  "build": {
+    "productName": "electron",
+    "files": [
+      "dist/",
+      "node_modules/",
+      "package.json"
+    ],
+    "mac": {
+      "category": "your.app.category.type"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    },
+    "directories": {
+      "output": "release"
+    },
+    "appId": "com.cn.littlestrong.demo",
+    "asar": false
+  },
+  "scripts": {
+    "start": "concurrently \"cross-env BROWSER=none yarn start:renderer\" \"wait-on http://localhost:8000 && electron-webpack dev\"",
+    "start:main": "electron-webpack dev",
+    "start:renderer": "cross-env APP_ROOT=src/renderer umi dev",
+    "build-main-prod": "NODE_ENV=production webpack --config ./build/webpack.main.prod.config.js",
+    "build-main-dev": "NODE_ENV=development webpack --config ./build/webpack.main.config.js",
+    "build:renderer": "cross-env APP_ROOT=src/renderer umi build",
+    "watch": "tsc -w",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "debug:main": "run-electron --inspect=5858 -w ./dist/main/main.js",
+    "pack": "npm run build:renderer && npm run build-main-prod && electron-builder --dir",
+    "exe": "electron-builder --win",
+    "dist": "electron-builder",
+    "prettier": "prettier --list-different \"./**/*.{ts,tsx,js,jsx,less}\""
+  },
+  "keywords": [
+    "Electron",
+    "umi",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "classnames": "^2.2.6",
+    "concurrently": "^5.1.0",
+    "cross-env": "^7.0.0",
+    "electron": "^8.0.0",
+    "electron-builder": "^22.3.2",
+    "electron-debug": "^3.0.1",
+    "electron-webpack": "^2.7.4",
+    "moment-locales-webpack-plugin": "^1.1.2",
+    "prettier": "1.19.0",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.10.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "run-electron": "^1.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "umi": "^2.8.16",
+    "umi-plugin-dll": "^1.6.0",
+    "umi-plugin-react": "^1.15.2",
+    "wait-on": "^4.0.0",
+    "webpack": "4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "dva": "^2.6.0-beta.6",
+    "antd": "^3.19.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "electronWebpack": {
+    "main": {
+      "sourceDirectory": "src/main"
+    },
+    "renderer": {
+      "sourceDirectory": null
+    }
+  }
+}
