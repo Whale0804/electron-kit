@@ -9,9 +9,14 @@ export default [
             },
             {
                 path: '/index',
-                name: 'home',
+                name: 'welcome',
                 icon: 'smile',
-                component: './index',
+                component: './index/index',
+            },{
+                path: '/index2',
+                name: 'admin',
+                icon: 'smile',
+                component: './index2',
             },
         ]
     }

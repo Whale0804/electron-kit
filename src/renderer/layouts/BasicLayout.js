@@ -1,3 +1,8 @@
+/**
+ * Ant Design Pro v4 use `@ant-design/pro-layout` to handle Layout.
+ * You can view component api by:
+ * https://github.com/ant-design/ant-design-pro-layout
+ */
 import ProLayout, { DefaultFooter } from '@ant-design/pro-layout';
 import React, { useEffect } from 'react';
 import { Link } from 'umi';
@@ -7,8 +12,7 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { getAuthorityFromRouter } from '@/utils/utils';
-import logo from '@/assets/logo/logo.svg';
-import styles from './BasicLayout.less';
+import logo from '../assets/logo/logo.svg';
 const noMatch = (
     <Result
         status="403"
@@ -88,6 +92,9 @@ const BasicLayout = props => {
             pathname: '/',
         },
     } = props;
+    /**
+     * constructor
+     */
 
     useEffect(() => {
         if (dispatch) {
@@ -96,6 +103,9 @@ const BasicLayout = props => {
             });
         }
     }, []);
+    /**
+     * init variables
+     */
 
     const handleMenuCollapse = payload => {
         if (dispatch) {
@@ -104,14 +114,13 @@ const BasicLayout = props => {
                 payload,
             });
         }
-    };
+    }; // get children authority
 
     const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
         authority: undefined,
     };
-
     return (
-        <ProLayout className={styles.container}
+        <ProLayout
             logo={logo}
             menuHeaderRender={(logoDom, titleDom) => (
                 <Link to="/">
@@ -124,6 +133,7 @@ const BasicLayout = props => {
                 if (menuItemProps.isUrl || menuItemProps.children || !menuItemProps.path) {
                     return defaultDom;
                 }
+
                 return <Link to={menuItemProps.path}>{defaultDom}</Link>;
             }}
             breadcrumbRender={(routers = []) => [
@@ -151,12 +161,11 @@ const BasicLayout = props => {
             {...props}
             {...settings}
         >
-            <Authorized authority={authorized.authority} noMatch={noMatch}>
-                {children}
-            </Authorized>
+            {children}
         </ProLayout>
-    )
-}
+    );
+};
+
 export default connect(({ global, settings }) => ({
     collapsed: global.collapsed,
     settings,

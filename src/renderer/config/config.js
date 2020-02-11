@@ -15,6 +15,8 @@ export default {
   lessLoaderOptions: {
     javascriptEnabled: true,
   },
+  disableRedirectHoist: true,
+
   plugins,
   routes,
 };

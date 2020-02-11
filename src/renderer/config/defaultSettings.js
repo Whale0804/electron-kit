@@ -11,7 +11,10 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'Ant Design Pro',
+  title: 'Electron-Kit',
   pwa: false,
   iconfontUrl: '',
+  contentStyle: {
+    height: '100%'
+  }
 };
