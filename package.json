@@ -91,6 +91,7 @@
     "electron-builder": "^22.3.2",
     "electron-debug": "^3.0.1",
     "electron-webpack": "^2.7.4",
+    "mockjs": "^1.1.0",
     "moment-locales-webpack-plugin": "^1.1.2",
     "prettier": "1.19.0",
     "prop-types": "^15.7.2",

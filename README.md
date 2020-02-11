@@ -12,7 +12,9 @@ yarn pack
 如果需要content高度100%，请到node_modules/@ant-design/pro-layout/es/WrapContent.js中修改第83行改为：
 ```javascript
 style: {
-    height: '100%'
+    height: '100%',
+    overflowY: 'auto',
+    overflowX: 'hidden',
 }
 ```
 目前还没找到更好的解决办法。
