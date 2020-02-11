@@ -6,7 +6,11 @@ export default [
             dva: {
                 hmr: true,
             },
-            dynamicImport: true,
+            dynamicImport: {
+                loadingComponent: './components/PageLoading/index',
+                webpackChunkName: true,
+                level: 3,
+            },
             title: 'Hello World',
             dll: true,
             hardSource: false,

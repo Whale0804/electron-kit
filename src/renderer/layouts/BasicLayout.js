@@ -7,7 +7,7 @@ import ProLayout, { DefaultFooter } from '@ant-design/pro-layout';
 import React, { useEffect } from 'react';
 import { Link } from 'umi';
 import { connect } from 'dva';
-import { Icon, Result, Button } from 'antd';
+import { Result, Button } from 'antd';
 import { formatMessage } from 'umi-plugin-react/locale';
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
@@ -47,7 +47,7 @@ const defaultFooterDom = (
             },
             {
                 key: 'github',
-                title: <Icon type="github" />,
+                title: 'github',
                 href: 'https://github.com/ant-design/ant-design-pro',
                 blankTarget: true,
             },
@@ -161,7 +161,9 @@ const BasicLayout = props => {
             {...props}
             {...settings}
         >
-            {children}
+            <Authorized authority={authorized.authority} noMatch={noMatch}>
+                {children}
+            </Authorized>
         </ProLayout>
     );
 };

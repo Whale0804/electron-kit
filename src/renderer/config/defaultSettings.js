@@ -11,6 +11,7 @@ export default {
   menu: {
     locale: true,
   },
+  siderWidth: 210,
   title: 'Electron-Kit',
   pwa: false,
   iconfontUrl: '',

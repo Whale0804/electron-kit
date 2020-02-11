@@ -1,15 +1,18 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, nativeTheme } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
 let mainWindow = null;
-
+const isMac = 'darwin' === process.platform;
 function createWindow() {
+  const titleBarStyle = isMac ? 'hiddenInset' : 'default';
   mainWindow = new BrowserWindow({
     minHeight: 600,
     minWidth: 800,
     width: 1040,
     height: 715,
+    show: true,
+    titleBarStyle,
     webPreferences: {
       nodeIntegration: true,
       // nodeIntegrationInWorker: true,
@@ -48,3 +51,7 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+nativeTheme.on('updated', function theThemeHasChanged () {
+  updateMyAppTheme(nativeTheme.shouldUseDarkColors)
+})
