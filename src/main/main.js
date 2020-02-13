@@ -5,7 +5,6 @@ import { menubar, } from 'menubar';
 let mainWindow,trayWindow;
 const isMac = 'darwin' === process.platform;
 function createWindow() {
-  console.log("3")
   const titleBarStyle = isMac ? 'hiddenInset' : 'default';
   mainWindow = new BrowserWindow({
     minHeight: 600,
@@ -68,7 +67,6 @@ function createTrayWindow(){
 
 app.on('ready', ()=>{
   createWindow();
-  console.log("2")
 });
 
 app.on('window-all-closed', () => {
