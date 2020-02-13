@@ -48,3 +48,9 @@ export const getRouteAuthority = (path, routeData) => {
 };
 export const displayThis = (condition, display = 'block') => (condition ? display : 'none');
 export const displayStyle = (condition, display) => ({ display: displayThis(condition, display) });
+export const isOsx = () =>{
+  return /macintosh|mac os x/i.test(navigator.userAgent);
+};
+export const isWin = () =>{
+  return /windows|win32/i.test(navigator.userAgent);
+};

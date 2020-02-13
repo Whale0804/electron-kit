@@ -14,8 +14,6 @@ import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { getAuthorityFromRouter } from '@/utils/utils';
 import logo from '../assets/logo/logo.svg';
-import os from 'os';
-import {osx} from "electron-is/is";
 const noMatch = (
     <Result
         status="403"
@@ -83,7 +81,6 @@ const BasicLayout = props => {
                 type: 'user/fetchCurrent',
             });
         }
-        console.log(os.type())
         if (props.location.query.isTray == '1'){
             console.log(props.location.query.isTray)
             router.replace('/tray/index')
