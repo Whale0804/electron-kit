@@ -4,27 +4,20 @@ export default [
         {
             antd: true,
             dva: {
+                dynamicImport: undefined,
                 hmr: true,
             },
-            dynamicImport: {
-                loadingComponent: './components/PageLoading/index',
-                webpackChunkName: true,
-                level: 3,
-            },
-            title: 'Hello World',
+            title: "Electron-Kit",
             dll: true,
             hardSource: false,
             routes: {
-                exclude: [/components/],
+                exclude: [/components\//],
             },
             locale: {
-                // default false
-                enable: true,
-                // default zh-CN
-                default: 'zh-CN',
-                // default true, when it is true, will use `navigator.language` overwrite default
-                baseNavigator: true,
-            },
-        },
+                default: "zh-CN",
+                baseNavigator: false,
+                antd: true,
+            }
+        }
     ],
 ]

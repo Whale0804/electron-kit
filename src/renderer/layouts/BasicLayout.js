@@ -6,6 +6,7 @@
 import ProLayout, { DefaultFooter } from '@ant-design/pro-layout';
 import React, { useEffect } from 'react';
 import { Link } from 'umi';
+import router from 'umi/router';
 import { connect } from 'dva';
 import { Result, Button } from 'antd';
 import { formatMessage } from 'umi-plugin-react/locale';
@@ -13,6 +14,8 @@ import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { getAuthorityFromRouter } from '@/utils/utils';
 import logo from '../assets/logo/logo.svg';
+import os from 'os';
+import {osx} from "electron-is/is";
 const noMatch = (
     <Result
         status="403"
@@ -61,28 +64,6 @@ const defaultFooterDom = (
     />
 );
 
-const footerRender = () => {
-    return (
-        <>
-            {defaultFooterDom}
-            <div
-                style={{
-                    padding: '0px 24px 24px',
-                    textAlign: 'center',
-                }}
-            >
-                <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">
-                    <img
-                        src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"
-                        width="82px"
-                        alt="netlify logo"
-                    />
-                </a>
-            </div>
-        </>
-    );
-};
-
 const BasicLayout = props => {
     const {
         dispatch,
@@ -101,6 +82,11 @@ const BasicLayout = props => {
             dispatch({
                 type: 'user/fetchCurrent',
             });
+        }
+        console.log(os.type())
+        if (props.location.query.isTray == '1'){
+            console.log(props.location.query.isTray)
+            router.replace('/tray/index')
         }
     }, []);
     /**
@@ -154,7 +140,7 @@ const BasicLayout = props => {
             //         <span>{route.breadcrumbName}</span>
             //     );
             // }}
-            footerRender={footerRender}
+            //footerRender={footerRender}
             menuDataRender={menuDataRender}
             formatMessage={formatMessage}
             rightContentRender={() => <RightContent />}

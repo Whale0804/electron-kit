@@ -12,11 +12,6 @@ export default {
   alias: buildrc.webpack.alias,
   treeShaking: true,
   ignoreMomentLocale: true,
-  lessLoaderOptions: {
-    javascriptEnabled: true,
-  },
-  disableRedirectHoist: true,
-
   plugins,
   routes,
 };

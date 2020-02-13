@@ -1,5 +1,16 @@
 export default [
     {
+        path: '/tray',
+        component: '../layouts/TrayLayout',
+        routes: [
+            {
+                name: 'login',
+                path: '/tray/index',
+                component: './tray/index',
+            },
+        ],
+    },
+    {
         path: "/",
         component: "../layouts/BasicLayout",
         routes: [
@@ -13,12 +24,11 @@ export default [
                 icon: 'smile',
                 component: './index/index',
             },{
-                path: '/index2',
+                path: '/test',
                 name: 'admin',
                 icon: 'smile',
                 component: './index2',
             },
         ]
     }
-
 ]
