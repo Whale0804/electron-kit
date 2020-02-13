@@ -5,6 +5,7 @@ import { menubar, } from 'menubar';
 let mainWindow,trayWindow;
 const isMac = 'darwin' === process.platform;
 function createWindow() {
+  console.log("3")
   const titleBarStyle = isMac ? 'hiddenInset' : 'default';
   mainWindow = new BrowserWindow({
     minHeight: 600,
@@ -24,25 +25,19 @@ function createWindow() {
     mainWindow.loadURL('http://localhost:8000/#/');
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadURL(`file://${__dirname}/dist/renderer/index.html?isTray=1`);
-    // mainWindow.loadURL(
-    //   url.format({
-    //     pathname: path.join(__dirname, './dist/renderer/index.html'),
-    //     protocol: 'file:',
-    //     slashes: true,
-    //   }),
-    // );
+    mainWindow.loadURL(`file://${__dirname}/dist/renderer/index.html`);
   }
-
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+  createTrayWindow();
 }
 
 function createTrayWindow(){
+  let tray = new Tray(path.join(__dirname, process.env.NODE_ENV === 'development'? '../../build/kit.png':'./build/kit.png'));
   trayWindow = new menubar({
     index: process.env.NODE_ENV === 'development' ? 'http://localhost:8000/#/tray/index' : `file://${__dirname}/dist/renderer/index.html?isTray=1`,
-    icon: path.join(__dirname,'./icon/kit.png'),
+    //icon: path.join(__dirname,'./icon/kit.png'),
     browserWindow :{
       width: 350,
       height: 460,
@@ -54,6 +49,7 @@ function createTrayWindow(){
         backgroundThrottling: false,
       },
     },
+    tray:tray,
     showDockIcon: true,
   });
 
@@ -72,7 +68,7 @@ function createTrayWindow(){
 
 app.on('ready', ()=>{
   createWindow();
-  createTrayWindow();
+  console.log("2")
 });
 
 app.on('window-all-closed', () => {

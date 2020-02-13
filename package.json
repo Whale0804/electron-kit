@@ -19,6 +19,7 @@
     "files": [
       "dist/",
       "node_modules/",
+      "build/kit.png",
       "package.json"
     ],
     "dmg": {

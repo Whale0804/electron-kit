@@ -82,7 +82,6 @@ const BasicLayout = props => {
             });
         }
         if (props.location.query.isTray == '1'){
-            console.log(props.location.query.isTray)
             router.replace('/tray/index')
         }
     }, []);
