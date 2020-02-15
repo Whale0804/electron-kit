@@ -12,7 +12,9 @@ function createWindow() {
     width: 1040,
     height: 715,
     show: true,
-    titleBarStyle,
+    transparent: true,
+    frame: false,
+    titleBarStyle: 'hiddenInset',
     webPreferences: {
       nodeIntegration: true,
       // nodeIntegrationInWorker: true,

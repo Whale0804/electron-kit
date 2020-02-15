@@ -76,11 +76,11 @@ const BasicLayout = props => {
      */
 
     useEffect(() => {
-        if (dispatch) {
-            dispatch({
-                type: 'user/fetchCurrent',
-            });
-        }
+        // if (dispatch) {
+        //     dispatch({
+        //         type: 'user/fetchCurrent',
+        //     });
+        // }
         if (props.location.query.isTray == '1'){
             router.replace('/tray/index')
         }
