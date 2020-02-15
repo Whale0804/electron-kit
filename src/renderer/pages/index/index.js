@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { formatMessage } from 'umi-plugin-locale';
-import {Button, Icon} from "antd";
+import { Button } from 'semantic-ui-react'
 import styles from './index.less';
 
 class Index extends PureComponent{

@@ -1,3 +1,4 @@
+import 'semantic-ui-css/semantic.min.css'
 export const dva = {
     config: {
         onError(err) {
