@@ -114,6 +114,7 @@
     "@ant-design/pro-layout": "^4.10.13",
     "antd": "^3.19.5",
     "dva": "^2.6.0-beta.6",
+    "electron-util": "^0.13.1",
     "menubar": "^8.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
